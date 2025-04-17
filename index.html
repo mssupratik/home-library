@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Library</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>My Home Library</h1>
+    <div id="welcome-message"></div>
+    <button id="logout-btn" style="display: none;">Logout</button>
+  </header>
+
+  <main>
+    <!-- Authentication Section -->
+    <section id="auth-section">
+      <div id="login-area">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p>Don't have an account? <a href="#" onclick="toggleRegister(true)">Register</a></p>
+      </div>
+
+      <div id="register-area" style="display: none;">
+        <h2>Register</h2>
+        <input type="text" id="new-username" placeholder="New Username" />
+        <input type="password" id="new-password" placeholder="New Password" />
+        <button onclick="register()">Register</button>
+        <p>Already have an account? <a href="#" onclick="toggleRegister(false)">Login</a></p>
+      </div>
+    </section>
+
+    <!-- Book Form Section -->
+    <section id="book-form-section" style="display: none;">
+      <h2>Add New Book</h2>
+      <form id="book-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" required />
+
+        <label for="overview">Overview:</label>
+        <textarea id="overview" required></textarea>
+
+        <label for="review">Review:</label>
+        <textarea id="review"></textarea>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" required />
+
+        <label for="rating">Rating (1-5):</label>
+        <input type="number" id="rating" min="1" max="5" required />
+
+        <label for="barcode">Barcode:</label>
+        <input type="text" id="barcode" required />
+
+        <label for="group">Group/Category:</label>
+        <input type="text" id="group" placeholder="e.g., Fiction, Science" />
+
+        <label for="image">Book Image:</label>
+        <input type="file" id="image" accept="image/*" />
+
+        <button type="submit">Add Book</button>
+      </form>
+    </section>
+
+    <!-- Manual Barcode Entry Section -->
+    <section id="manual-scan-section" style="display: none;">
+      <h2>Manual Barcode Entry</h2>
+      <input type="text" id="manual-barcode" placeholder="Enter barcode number" />
+      <button onclick="manualScan()">Mark as Taken</button>
+    </section>
+
+    <!-- Group Filter Section -->
+    <section id="group-filter-section" style="display: none;">
+      <label for="group-filter">Filter by Group:</label>
+      <select id="group-filter" onchange="filterByGroup()">
+        <option value="">All</option>
+      </select>
+    </section>
+
+    <!-- Books Display Section -->
+    <section id="books-container"></section>
+  </main>
+
+  <!-- Edit Book Modal -->
+  <div id="edit-modal">
+    <div class="book-card">
+      <h2>Edit Book</h2>
+      <form id="edit-form">
+        <input type="hidden" id="edit-barcode">
+        <label for="edit-title">Title:</label>
+        <input type="text" id="edit-title" required>
+        
+        <label for="edit-overview">Overview:</label>
+        <textarea id="edit-overview" required></textarea>
+        
+        <label for="edit-review">Review:</label>
+        <textarea id="edit-review"></textarea>
+        
+        <label for="edit-price">Price:</label>
+        <input type="number" id="edit-price" required>
+        
+        <label for="edit-rating">Rating (1-5):</label>
+        <input type="number" id="edit-rating" min="1" max="5" required>
+        
+        <label for="edit-group">Group/Category:</label>
+        <input type="text" id="edit-group" placeholder="e.g., Fiction, Science">
+        
+        <div class="modal-buttons">
+          <button type="button" onclick="closeEditModal()">Cancel</button>
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
